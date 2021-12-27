@@ -48,11 +48,14 @@ static List<CompleteAddress> ConvertToWholeAddresses(List<Node> addresses)
 static CompleteAddress ParseSingleAddress(Node address)
 {
 	var newAddress = new CompleteAddress();
+	newAddress.Country = address.Tag.Find(t => t.Key == "addr:country")?.Value;
 	newAddress.City = address.Tag.Find(t => t.Key == "addr:city")?.Value;
 	newAddress.HouseNumber = address.Tag.Find(t => t.Key == "addr:housenumber")?.Value;
 	newAddress.PostCode = address.Tag.Find(t => t.Key == "addr:postcode")?.Value;
 	newAddress.State = address.Tag.Find(t => t.Key == "addr:state")?.Value;
 	newAddress.Street = address.Tag.Find(t => t.Key == "addr:street")?.Value;
+	newAddress.Building = address.Tag.Find(t => t.Key == "building")?.Value;
+	newAddress.BuildingLevel = address.Tag.Find(t => t.Key == "building:levels")?.Value;
 
 	newAddress.Latitude = address.Latitude;
 	newAddress.Longitude = address.Longitude;
